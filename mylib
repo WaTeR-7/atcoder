@@ -1,0 +1,60 @@
+#!/bin/bash
+
+LIBRARY_DIR="$HOME/atcoder/lib"
+
+
+# Show list of library
+show_list () {
+  find "$LIBRARY_DIR" -type f -name "*.cpp" -print0 | xargs -0 -n 1 basename | sed 's/\.cpp$//' | sort
+}
+
+
+# Copy library file to current directory
+copy_file () {
+  local FILE_NAME="$1"
+  local SOURCE_FILE="${LIBRARY_DIR}/${FILE_NAME}.cpp"
+  local DEST_FILE="./${FILE_NAME}.cpp"
+  
+  # Check if file exists
+  if [ ! -f "$SOURCE_FILE" ]; then
+    echo "Error: Not found '${FILE_NAME}'"
+    echo "Use '-ls' option."
+    exit 1
+  fi
+  
+  # Copy
+  cp "$SOURCE_FILE" "$DEST_FILE"
+  if [ $? -eq 0 ]; then
+    echo "Copied ${FILE_NAME}.cpp to current directory."
+  else
+    echo "Error: something wrong during copying"
+    exit 1
+  fi
+}
+
+
+# Show usage
+show_usage () {
+  echo "Usage: mylib <op>"
+  echo "-ls: show library"
+  echo "-cp: copy file"
+  exit 1
+}
+
+
+# main
+if [ "$#" -eq 0 ]; then
+  show_usage
+fi
+
+case "$1" in
+  "-ls")
+    show_list
+    ;;
+  "-cp")
+    copy_file "$2"
+    ;;
+  *)
+    show_usage
+    ;;
+esac
