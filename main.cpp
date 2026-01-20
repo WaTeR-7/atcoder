@@ -5,8 +5,8 @@
 // =============================================================================
 
 void inout_sync() {
-    std::ios::sync_with_stdio(false);
-    std::cin.tie(nullptr);
+    std::ios::sync_with_stdio(false);  // C標準入出力との同期を解除
+    std::cin.tie(nullptr);  // cin/coutの同期を解除
 }
 
 
@@ -255,6 +255,6 @@ const vpii DX = {{-1,0},{1,0},{0,-1},{0,1}};
 
 
 int main () {
-    inout_sync();
+    inout_sync();  // 入出力高速化: printf/scanfは使えない, coutはcinでflushされない
     
 }
