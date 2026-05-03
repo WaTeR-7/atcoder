@@ -8,6 +8,16 @@ show_list () {
   find "$LIBRARY_DIR" -type f -name "*.cpp" -print0 | xargs -0 -n 1 basename | sed 's/\.cpp$//' | sort
 }
 
+# Find files by keyword (Partial match)
+find_files () {
+  local KEYWORD="$1"
+  if [ -z "$KEYWORD" ]; then
+    echo "Error: Please specify a search keyword."
+    exit 1
+  fi
+  # ファイル一覧からキーワードを含むものを抽出
+  show_list | grep -i "$KEYWORD"
+}
 
 # Copy library file to current directory
 copy_file () {
@@ -36,8 +46,9 @@ copy_file () {
 # Show usage
 show_usage () {
   echo "Usage: mylib <op>"
-  echo "-ls: show library"
-  echo "-cp: copy file"
+  echo "-ls       : show library"
+  echo "-fd <key> : find files by keyword"
+  echo "-cp <file>: copy file"
   exit 1
 }
 
@@ -50,6 +61,9 @@ fi
 case "$1" in
   "-ls")
     show_list
+    ;;
+  "-fd")
+    find_files "$2"
     ;;
   "-cp")
     copy_file "$2"
