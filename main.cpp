@@ -61,6 +61,23 @@ std::istream& operator>> (std::istream& is, std::vector<T>& v) {
     return is;
 }
 
+// グラフの入力用関数
+void in_graph(std::vector<std::vector<int>>& graph, int m, bool directed) {
+    for (int i = 0; i < m; ++i) {
+        int u, v; std::cin >> u >> v; --u, --v;
+        graph[u].push_back(v);
+        if (! directed) {
+            graph[v].push_back(u);
+        }
+    }
+    return;
+}
+
+// グラフ入力用マクロ
+#define DIRECTED true
+#define UNDIRECTED false
+#define IN_GRAPH(graph, n, m, directed) std::vector<std::vector<int>> graph(n); in_graph(graph, m, directed)
+
 
 // =============================================================================
 // 出力
