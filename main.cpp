@@ -1,6 +1,22 @@
 #include <bits/stdc++.h>
 
 // =============================================================================
+// vectorの構成
+// =============================================================================
+
+// 多次元vectorを一括生成する関数
+template <typename T>
+std::vector<T> make_vector(size_t size) {
+    return std::vector<T>(size);
+}
+
+template <typename T, typename... Ts>
+auto make_vector(size_t size, Ts... ts) {
+    return std::vector<decltype(make_vector<T>(ts...))>(size, make_vector<T>(ts...));
+}
+
+
+// =============================================================================
 // 入出力高速化
 // =============================================================================
 
