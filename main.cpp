@@ -285,6 +285,7 @@ using vvl = vector<vl>;
 using vpll = vector<pll>;
 
 // 定数
+constexpr double PI = std::numbers::pi;
 constexpr int INF = std::numeric_limits<int>::max();
 constexpr ll INFLL = std::numeric_limits<ll>::max();
 const string ABC = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
