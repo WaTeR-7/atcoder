@@ -45,6 +45,7 @@ void in_impl (T& head, TS&... tail) {
 
 // 可変長汎用入力マクロ
 #define IN(T, ...) T __VA_ARGS__; in_impl(__VA_ARGS__)
+#define IN_V(T, NAME, ...) auto NAME = make_vector<T>(__VA_ARGS__); std::cin >> NAME
 
 // pair<T1,T2>の入力
 template <typename T1, typename T2>
