@@ -20,10 +20,14 @@ auto make_vector(size_t size, Ts... ts) {
 // 入出力高速化
 // =============================================================================
 
+// 入出力高速化を実行する関数
 void inout_sync() {
     std::ios::sync_with_stdio(false);  // C標準入出力との同期を解除
     std::cin.tie(nullptr);  // cin/coutの同期を解除
 }
+
+// 入出力を高速化するマクロ
+#define FAST_IO inout_sync()
 
 
 // =============================================================================
@@ -271,6 +275,6 @@ const vpii DX = {{-1,0},{1,0},{0,-1},{0,1}};
 
 
 int main () {
-    inout_sync();  // 入出力高速化: printf/scanfは使えない, coutはcinでflushされない
+    FAST_IO;
     
 }
