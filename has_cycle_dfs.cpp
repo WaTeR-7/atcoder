@@ -1,7 +1,4 @@
 #include <bits/stdc++.h>
-using namespace std;
-using vi = vector<int>;
-using vvi = vector<vi>;
 
 
 /**
@@ -10,10 +7,10 @@ using vvi = vector<vi>;
  * @param graph グラフを表す隣接リスト
  * @return グラフが閉路を持つならtrueを返す
  */
-bool has_cycle(const vvi& graph) {
+bool has_cycle(const std::vector<std::vector<int>>& graph) {
     int n = graph.size();
-    vi done(n);
-    vi on_stack(n);
+    std::vector<int> done(n);
+    std::vector<int> on_stack(n);
     auto dfs = [&](int st, auto self) -> bool {
         done[st] = 1;
         on_stack[st] = 1;
