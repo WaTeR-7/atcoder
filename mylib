@@ -28,7 +28,7 @@ copy_file () {
   # Check if file exists
   if [ ! -f "$SOURCE_FILE" ]; then
     echo "Error: Not found '${FILE_NAME}'"
-    echo "Use '-ls' option."
+    echo "Use '-ls' or '-fd' option to find the correct file."
     exit 1
   fi
   
