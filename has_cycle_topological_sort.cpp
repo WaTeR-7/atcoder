@@ -1,7 +1,4 @@
 #include <bits/stdc++.h>
-using namespace std;
-using vi = vector<int>;
-using vvi = vector<vi>;
 
 
 /**
@@ -10,16 +7,16 @@ using vvi = vector<vi>;
  * @param graph グラフを表す隣接リスト
  * @return グラフが閉路を持つならtrueを返す
  */
-bool has_cycle(const vvi& graph) {
+bool has_cycle(const std::vector<std::vector<int>>& graph) {
     int n = graph.size();
-    vi in_degree(n);
+    std::vector<int> in_degree(n);
     for (int i = 0; i < n; ++i) {
         for (int j : graph[i]) {
             in_degree[j]++;
         }
     }
     
-    queue<int> que;
+    std::queue<int> que;
     for (int i = 0; i < n; ++i) {
         if (in_degree[i] == 0) que.push(i);
     }
