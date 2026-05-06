@@ -23,6 +23,7 @@ class UnionFindTree {
      * @return 求めた根の番号
      */
     int find_root(int x) {
+        assert(0 <= x && x < n_);
         if (root_[x] < 0) return x;
         return root_[x] = find_root(root_[x]);
     }
