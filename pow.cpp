@@ -9,12 +9,12 @@
  * @return X^Y % MOD の値
  */
 int pow(int x, int y, int mod) {
-  int res = 1;
-  for (; y > 0; y >>= 1) {
-    if (y & 1) res = res * x % mod;
-    x = x * x % mod;
-  }
-  return res;
+    int res = 1;
+    for (; y > 0; y >>= 1) {
+        if (y & 1) res = res * x % mod;
+        x = x * x % mod;
+    }
+    return res;
 }
 
 /**
@@ -26,12 +26,12 @@ int pow(int x, int y, int mod) {
  * @return X^Y の値
  */
 long long pow(long long x, long long y) {
-  long long res = 1;
-  for (; y > 0; y >>= 1) {
-    if (y & 1) res *= x;
-    x *= x;
-  }
-  return res;
+    long long res = 1;
+    for (; y > 0; y >>= 1) {
+        if (y & 1) res *= x;
+        x *= x;
+    }
+    return res;
 }
 
 /**
@@ -43,10 +43,10 @@ long long pow(long long x, long long y) {
  * @return X^Y % MOD の値
  */
 long long pow(long long x, long long y, long long mod) {
-  long long res = 1;
-  for (; y > 0; y >>= 1) {
-    if (y & 1) res = res * x % mod;
-    x = x * x % mod;
-  }
-  return res;
+    long long res = 1;
+    for (; y > 0; y >>= 1) {
+        if (y & 1) res = res * x % mod;
+        x = x * x % mod;
+    }
+    return res;
 }
