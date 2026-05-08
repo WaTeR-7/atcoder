@@ -7,15 +7,22 @@
  */
 class UnionFindTree {
   private:
-    int n_;
-    std::vector<int> root_, rank_;
+    int n_;  // ノードの数
+    int cnt_groups_;  // グループの数
+    /**
+     * 根を管理する配列
+     * root_[x] < 0のとき: ノードxは根であり，-root_[x]はノードxを根とするグループのサイズ
+     * root_[x] >= 0のとき: ノードxはの根はroot_[x]である
+     */
+    std::vector<int> root_;
+    std::vector<int> rank_;  // 木の高さを管理する配列
     
   public:
     /**
      * UnionFindTreeのコンストラクタ
      * 0-indexedであることに注意する
      */
-    UnionFindTree(int n) : n_(n), root_(n, -1), rank_(n) {}
+    UnionFindTree(int n) : n_(n), cnt_groups_(n), root_(n, -1), rank_(n) {}
     
     /**
      * あるノードの根となるノードの番号を求める
@@ -43,6 +50,7 @@ class UnionFindTree {
         else if (rank_[x] < rank_[y]) std::swap(x, y);
         root_[x] += root_[y];
         root_[y] = x;
+        --cnt_groups_;
     }
     
     /**
@@ -54,6 +62,25 @@ class UnionFindTree {
     bool is_same(int x, int y) {
         return find_root(x) == find_root(y);
     }
+    
+    /**
+     * 指定されたノードを含むグループのサイズを取得する
+     * 計算量はO(a(N))である
+     * @param x ノードの番号
+     * @return グループのサイズ
+     */
+    int size_of(int x) {
+        return -root_[find_root(x)];
+    }
+    
+    /**
+     * グループの数を取得する
+     * 計算量はO(1)である
+     * @return グループの数
+     */
+    int count_groups() const {
+        return cnt_groups_;
+    }
 };
 
 
@@ -61,16 +88,23 @@ using UFT = UnionFindTree;
 
 
 int main() {
-    int N; std::cin >> N;
+    // 入力
+    int N, M; std::cin >> N >> M;
+    int A, B; std::cin >> A >> B;
+    std::vector<int> X(M), Y(M);
+    for (int i = 0; i < M; ++i) std::cin >> X[i] >> Y[i];
+    
     // 初期化
     // 0-indexedであることに注意!
     UFT uft(N);
     // 結合
-    for (int i = 0; i < 10; ++i) {
-        int X, Y; std::cin >> X >> Y;
-        uft.unite(X, Y);
+    for (int i = 0; i < M; ++i) {
+        uft.unite(X[i], Y[i]);
     }
     // 同一か判定
-    int A, B; std::cin >> A >> B;
     bool is_same = uft.is_same(A, B);
+    // グループの数を取得
+    int group_count = uft.count_groups();
+    // グループのサイズを取得
+    int size_A = uft.size_of(A);
 }
