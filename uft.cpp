@@ -3,6 +3,7 @@
 
 /**
  * 要素が属するグループの結合，所属判定を高速に行うことができるデータ構造
+ * 0-indexedであることに注意する
  */
 class UnionFindTree {
   private:
@@ -14,7 +15,7 @@ class UnionFindTree {
      * UnionFindTreeのコンストラクタ
      * 1-indexedに対応するために，n+1で初期化する
      */
-    UnionFindTree(int n) : n_(n+1), root_(n+1, -1), rank_(n+1) {}
+    UnionFindTree(int n) : n_(n), root_(n, -1), rank_(n) {}
     
     /**
      * あるノードの根となるノードの番号を求める
@@ -62,6 +63,7 @@ using UFT = UnionFindTree;
 int main() {
     int N; std::cin >> N;
     // 初期化
+    // 0-indexedであることに注意!
     UFT uft(N);
     // 結合
     for (int i = 0; i < 10; ++i) {
