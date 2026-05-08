@@ -10,8 +10,8 @@ class Indexer {
     static_assert(N > 0, "Dimension must be greater than 0");
     
   private:
-    std::array<int,N> dims_;     // 各次元のサイズ
-    std::array<int,N> strides_;  // 変換用の重み
+    std::array<int,N> dims_;     // 各次元のサイズの配列
+    std::array<int,N> strides_;  // 変換用の重みの配列
     int total_size_;             // idの大きさ
     
   public:
