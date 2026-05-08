@@ -13,7 +13,7 @@ class UnionFindTree {
   public:
     /**
      * UnionFindTreeのコンストラクタ
-     * 1-indexedに対応するために，n+1で初期化する
+     * 0-indexedであることに注意する
      */
     UnionFindTree(int n) : n_(n), root_(n, -1), rank_(n) {}
     
