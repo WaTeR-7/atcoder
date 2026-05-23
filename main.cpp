@@ -54,6 +54,13 @@ std::istream& operator>> (std::istream& is, std::pair<T1, T2>& p) {
     return is;
 }
 
+// tuple<Args...>の入力
+template <typename... Args>
+std::istream& operator>>(std::istream& is, std::tuple<Args...>& t) {
+    std::apply([&is](auto&... args) { ((is >> args), ...); }, t);
+    return is;
+}
+
 // vector<T>の入力
 template <typename T>
 std::istream& operator>> (std::istream& is, std::vector<T>& v) {
